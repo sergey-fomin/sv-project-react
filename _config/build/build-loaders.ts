@@ -9,7 +9,7 @@ export function buildLoaders({ isDev }: IBuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/,
     };
 
-    const stylesLoaders = {
+    const stylesLoader = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -17,7 +17,7 @@ export function buildLoaders({ isDev }: IBuildOptions): webpack.RuleSetRule[] {
                 loader: "css-loader",
                 options: {
                     modules: {
-                        auto: (resPath: string) => Boolean(resPath.includes('.module.')),
+                        auto: (resPath: string) => resPath.includes('.module.'),
                         localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
                     }
                 }
@@ -26,5 +26,16 @@ export function buildLoaders({ isDev }: IBuildOptions): webpack.RuleSetRule[] {
         ]
     }
 
-    return [ typescriptLoader, stylesLoaders ];
+    const fontsLoader = {
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+    }
+
+
+    const imagesLoader = {
+        test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
+        type: isDev ? 'asset/resource' : 'asset',
+    }
+
+    return [ typescriptLoader, stylesLoader, fontsLoader, imagesLoader ];
 }

@@ -1,6 +1,8 @@
+import classes from './profile.module.scss';
+
 export const Profile = (props) => {
     return (
-        <div className="profile">
+        <div className={classes.profile}>
             <img
                 src="/img/avatar.jpg"
                 srcSet="/img/avatar@2x.jpg 2x"

@@ -5,7 +5,18 @@ export const Form = (props) => {
         <form className="form form--color-inversion form--registration">
             <fieldset className="form__fieldset">
                 <legend className="form__title">Регистрация</legend>
-                <InputList/>
+
+                <div>
+                    <input
+                        className="form__input"
+                        type="password"
+                        name="registrationPassword"
+                        id="registration-password"
+                        placeholder="Пароль"
+                    />
+                    <div className="form__input-error"></div>
+                </div>
+
                 <button className="form__submit-btn" type="submit">
                     Зарегистрироваться
                 </button>
