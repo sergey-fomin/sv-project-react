@@ -1,13 +1,18 @@
 import classes from './profile.module.scss';
-import avatar from './../../assets/img/avatar@2x.jpg';
 import plusIcon from './../../assets/svg/plus-icon.svg';
 import editIcon from './../../assets/svg/edit-icon.svg';
 
-export const Profile = (props) => {
+type TPorfileProps = {
+    avatarSrc: string;
+    name: string;
+    occupation: string;
+}
+
+export const Profile = (props: TPorfileProps) => {
     return (
         <div className={classes.profile}>
             <img
-                src={avatar}
+                src={props.avatarSrc}
                 // КАК установить?????????
                 srcSet="/img/avatar@2x.jpg 2x"
                 alt="avatar"
@@ -17,7 +22,7 @@ export const Profile = (props) => {
             />
             <div className={classes.info}>
                 <div className={classes.nameWrapper}>
-                    <p className={classes.name}>Жак-Ив Кусто</p>
+                    <p className={classes.name}>{props.name}</p>
                     <button className={classes.editBtn}>
                         <img
                             className={classes.editBtnIcon}
@@ -26,7 +31,7 @@ export const Profile = (props) => {
                         />
                     </button>
                 </div>
-                <p className={classes.occupation}>Исследователь океана</p>
+                <p className={classes.occupation}>{props.occupation}</p>
             </div>
             <button className={classes.addCardBtn}>
                 <img

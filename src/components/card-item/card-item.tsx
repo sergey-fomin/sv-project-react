@@ -11,7 +11,7 @@ export const CardItem = (props: TCardItemProps) => {
     return (
         <div className={classes.cardItem}>
             <img
-                alt={props.imageSrc || ""}
+                alt={props.title}
                 src={props.imageSrc || defaultImg}
                 className={classes.image}
             />
@@ -19,7 +19,7 @@ export const CardItem = (props: TCardItemProps) => {
                 <p className={classes.title}>{props.title}</p>
                 <button className={classes.likeBtn}></button>
             </div>
-            <button className={classes.deleteBtn} data-authorized>
+            <button className={classes.deleteBtn}>
                 <img
                     width="19"
                     height="22"
