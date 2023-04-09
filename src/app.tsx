@@ -1,6 +1,6 @@
 import './styles/index.scss';
 import { Route, Routes } from 'react-router-dom';
-import { MainPageAsync } from './pages/main-page/main-page.async';
+// import { MainPageAsync } from './pages/main-page/main-page.async';
 import { Suspense } from 'react';
 import MainPage from './pages/main-page/main-page';
 

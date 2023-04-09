@@ -3,13 +3,13 @@ import webpack from 'webpack';
 import { IBuildOptions } from './types/config';
 
 export function buildLoaders({ isDev }: IBuildOptions): webpack.RuleSetRule[] {
-    const typescriptLoader = {
+    const typescriptLoader: webpack.RuleSetRule = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
     };
 
-    const stylesLoader = {
+    const stylesLoader: webpack.RuleSetRule = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -18,7 +18,7 @@ export function buildLoaders({ isDev }: IBuildOptions): webpack.RuleSetRule[] {
                 options: {
                     modules: {
                         auto: (resPath: string) => resPath.includes('.module.'),
-                        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
+                        localIdentName: isDev ? '[name]__[local]_[hash:base64:5]' : '[hash:base64:8]',
                     }
                 }
             },
@@ -26,15 +26,17 @@ export function buildLoaders({ isDev }: IBuildOptions): webpack.RuleSetRule[] {
         ]
     }
 
-    const fontsLoader = {
+    const fontsLoader: webpack.RuleSetRule = {
         test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'asset/resource',
+        generator: {
+            filename: isDev ? 'assets/fonts/[name][ext][query]' : 'assets/fonts/[name].[contenthash][ext][query]'
+        }
     }
 
-
-    const imagesLoader = {
+    const imagesLoader: webpack.RuleSetRule = {
         test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
-        type: isDev ? 'asset/resource' : 'asset',
+        type: 'asset/resource',
     }
 
     return [ typescriptLoader, stylesLoader, fontsLoader, imagesLoader ];

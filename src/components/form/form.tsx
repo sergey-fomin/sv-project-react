@@ -1,5 +1,3 @@
-import { InputList } from "../input-list/input-list";
-
 export const Form = (props) => {
     return (
         <form className="form form--color-inversion form--registration">

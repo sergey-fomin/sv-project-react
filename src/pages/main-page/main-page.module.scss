@@ -1,6 +1,6 @@
-@import '../../styles/common';
+@import '../../styles/shared';
 
-.main-page {
+.mainPage {
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
@@ -12,4 +12,18 @@
     font-size: 14px;
     color: $white;
     background-color: $black;
+}
+
+.profile {
+    margin-bottom: 36px;
+}
+
+@media screen and (min-width: $desktop-width) {
+    .profile {
+        margin-block: 40px 50px;
+    }
+
+    .cardList {
+        margin-bottom: 30px;
+    }
 }

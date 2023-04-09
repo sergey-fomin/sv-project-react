@@ -1,92 +1,92 @@
-@import '../../styles/common';
+@import '../../styles/shared';
 
-.card-item {
+.cardItem {
     position: relative;
     width: 282px;
     background-color: $white;
     border-radius: 10px;
 
     &:hover {
-        .card-item__delete-btn {
+        .deleteBtn {
             opacity: 1;
         }
     }
+}
 
-    &__image {
-        min-height: 282px;
-        min-width: 100%;
-        height: 282px;
-        object-fit: cover;
-        background-color: #73b7fb;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+.image {
+    min-height: 282px;
+    min-width: 100%;
+    height: 282px;
+    object-fit: cover;
+    background-color: #73b7fb;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.description {
+    min-height: 79px;
+    padding: 25px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    color: $black;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.likeBtn {
+    width: 22px;
+    height: 19px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    background: url("./../../assets/svg/like-icon.svg") no-repeat;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 0.5;
     }
 
-    &__description {
-        min-height: 79px;
-        padding: 25px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    &:active,
+    &.isActive {
+        background: url("./../../assets/svg/like-icon-active.svg") no-repeat;
+    }
+}
+
+.deleteBtn {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: $black -5px 5px 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        .deleteBtnIcon {
+            opacity: 0.7;
+        }
     }
 
-    &__title {
-        color: $black;
-        font-weight: 900;
-        font-size: 24px;
-        line-height: 29px;
-    }
-
-    &__like-btn {
-        width: 22px;
-        height: 19px;
-        padding: 0;
-        margin: 0;
-        border: none;
-        outline: none;
-        background: url("../assets/svg/like-icon.svg") no-repeat;
-        cursor: pointer;
-
-        &:hover,
-        &:focus-visible {
+    &:active {
+        .deleteBtnIcon {
             opacity: 0.5;
-        }
-
-        &:active,
-        &.is-active {
-            background: url("../assets/svg/like-icon-active.svg") no-repeat;
-        }
-    }
-
-    &__delete-btn {
-        position: absolute;
-        top: -10px;
-        right: 10px;
-        padding: 10px;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: $white;
-        border-radius: 5px;
-        border: none;
-        outline: none;
-        box-shadow: $black -5px 5px 20px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        cursor: pointer;
-
-        &:hover,
-        &:focus-visible {
-            .card-item__delete-btn-icon {
-                opacity: 0.7;
-            }
-        }
-
-        &:active {
-            .card-item__delete-btn-icon {
-                opacity: 0.5;
-            }
         }
     }
 }

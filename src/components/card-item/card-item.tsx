@@ -1,28 +1,30 @@
 import classes from './card-item.module.scss';
+import defaultImg from './../../assets/img/default-card-image.jpg';
+import deleteIcon from './../../assets/svg/delete-icon.svg';
 
-type TCardItemProps = {
-    imageSrc: string;
+export type TCardItemProps = {
+    imageSrc?: string;
     title: string;
 }
 
 export const CardItem = (props: TCardItemProps) => {
     return (
-        <div className={classes['card-item']}>
+        <div className={classes.cardItem}>
             <img
                 alt={props.imageSrc || ""}
-                src={props.imageSrc || "/img/default-card-image.jpg"}
-                className={classes['card-item__image']}
+                src={props.imageSrc || defaultImg}
+                className={classes.image}
             />
-            <div className={classes['card-item__description']}>
-                <p className={classes['card-item__title']}>{props.title}</p>
-                <button className={classes['card-item__like-btn']}></button>
+            <div className={classes.description}>
+                <p className={classes.title}>{props.title}</p>
+                <button className={classes.likeBtn}></button>
             </div>
-            <button className={classes['card-item__delete-btn']} data-authorized>
+            <button className={classes.deleteBtn} data-authorized>
                 <img
                     width="19"
                     height="22"
-                    className={classes['card-item__delete-btn-icon']}
-                    src="/svg/delete-icon.svg"
+                    className={classes.deleteBtnIcon}
+                    src={deleteIcon}
                     alt="delete icon"
                 />
             </button>

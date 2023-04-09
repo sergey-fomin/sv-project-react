@@ -12,9 +12,10 @@ export function buildWebpackConfig(options: IBuildOptions): webpack.Configuratio
         mode,
         entry: paths.entry,
         output: {
-            filename: '[name].[contenthash].js',
+            filename: isDev ? '[name].js' : '[name].[contenthash].js',
             path: paths.build,
-            clean: true
+            assetModuleFilename: isDev ? 'assets/[name][ext][query]' : 'assets/[name].[contenthash][ext][query]',
+            clean: true,
         },
         plugins: buildPlugins(options),
         module: {

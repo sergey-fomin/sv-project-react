@@ -1,127 +1,129 @@
+@import '../../styles/shared';
+
 .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
-    &__avatar {
-        min-width: 120px;
-        min-height: 120px;
-        margin-bottom: 26px;
-        border-radius: 50%;
-    }
+.avatar {
+    min-width: 120px;
+    min-height: 120px;
+    margin-bottom: 26px;
+    border-radius: 50%;
+}
 
-    &__info {
-        margin-bottom: 36px;
-        // color: $white;
-        text-align: center;
-    }
+.info {
+    margin-bottom: 36px;
+    color: $white;
+    text-align: center;
+}
 
-    &__name-wrapper {
-        display: inline-flex;
-        align-items: center;
-        margin-bottom: 14px;
-    }
+.nameWrapper {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
 
-    &__name {
-        font-weight: 500;
-        font-size: 27px;
-        line-height: 33px;
-    }
+.name {
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33px;
+}
 
-    &__edit-btn {
-        width: 18px;
-        height: 18px;
-        padding: 0;
-        margin-left: 10px;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        cursor: pointer;
+.editBtn {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
 
-        &:hover,
-        &:focus-visible,
-        &:active {
-            opacity: 0.6;
-        }
-    }
-
-    &__occupation {
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-    }
-
-    &__add-card-btn {
-        min-height: 50px;
-        padding: 0;
-        margin: 0;
-        align-self: stretch;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        // border: 2px solid $white;
-        border-radius: 2px;
-        outline: none;
-        background-color: transparent;
-        cursor: pointer;
-
-        &:hover,
-        &:focus,
-        &:active {
-            opacity: 0.6;
-        }
-    }
-
-    &__add-card-btn-icon {
-        width: 16px;
-        height: 16px;
+    &:hover,
+    &:focus-visible,
+    &:active {
+        opacity: 0.6;
     }
 }
 
-// @media screen and (min-width: $desktop-width) {
-//     .profile {
-//         flex-direction: row;
-//         gap: 30px;
+.occupation {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
 
-//         &__container {
-//             max-width: 880px;
-//             margin-inline: auto;
-//             padding-inline: 0;
-//         }
+.addCardBtn {
+    min-height: 50px;
+    padding: 0;
+    margin: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $white;
+    border-radius: 2px;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
 
-//         &__avatar {
-//             margin-bottom: 0;
-//         }
+    &:hover,
+    &:focus,
+    &:active {
+        opacity: 0.6;
+    }
+}
 
-//         &__info {
-//             margin-bottom: 0;
-//             text-align: left;
-//         }
+.addCardBtnIcon {
+    width: 16px;
+    height: 16px;
+}
 
-//         &__name-wrapper {
-//             margin-bottom: 16px;
-//         }
+@media screen and (min-width: $desktop-width) {
+    .profile {
+        flex-direction: row;
+        gap: 30px;
+    }
 
-//         &__name {
-//             font-size: 42px;
-//             line-height: 48px;
-//         }
+    .container {
+        max-width: 880px;
+        margin-inline: auto;
+        padding-inline: 0;
+    }
 
-//         &__edit-btn {
-//             width: 24px;
-//             height: 24px;
-//             margin-left: 18px;
-//         }
+    .avatar {
+        margin-bottom: 0;
+    }
 
-//         &__occupation {
-//             font-size: 18px;
-//             line-height: 22px;
-//         }
+    .info {
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-//         &__add-card-btn {
-//             min-width: 150px;
-//             margin-left: auto;
-//             align-self: auto;
-//         }
-//     }
-// }
+    .nameWrapper {
+        margin-bottom: 16px;
+    }
+
+    .name {
+        font-size: 42px;
+        line-height: 48px;
+    }
+
+    .editBtn {
+        width: 24px;
+        height: 24px;
+        margin-left: 18px;
+    }
+
+    .occupation {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .addCardBtn {
+        min-width: 150px;
+        margin-left: auto;
+        align-self: auto;
+    }
+}
