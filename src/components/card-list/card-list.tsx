@@ -6,7 +6,7 @@ type TCardListProps = {
 }
 
 export const CardList = (props: TCardListProps) => {
-    const cardItems = props.cards.map((card) => <li><CardItem imageSrc={card.imageSrc} title={card.title}/></li>);
+    const cardItems = props.cards.map((card, index) => <li key={index}><CardItem imageSrc={card.imageSrc} title={card.title}/></li>);
 
     return (
         <ul className={classes.cardList}>
