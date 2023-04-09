@@ -6,9 +6,10 @@ import { Main } from "../../components/main/main";
 const LoginPage = (props) => {
     return (
         <div>
-            <Header isLoggedIn={true} route={'login'}/>
+            <Header isLoggedIn={props.isLoggedIn} route={props.route} profileEmail='' onStateChange={props.handleStateChange}/>
             <Main>
-                <Form/>
+                LoginPage!!!!!!!!
+                {/* <Form/> */}
             </Main>
             <Footer/>
         </div>

@@ -31,20 +31,31 @@ const mockData = {
     ],
     profileAvatarSrc: avatar,
     profileName: 'Жак-Ив Кусто',
-    profileOccupation: 'Исследователь океана'
+    profileOccupation: 'Исследователь океана',
+    profileEmail: 'kusto@sutulaya.ru'
 }
 
 const MainPage = (props) => {
     return (
         <div className={classes.mainPage}>
-            <Header isLoggedIn={true} route={'main-page'}/>
+            <Header
+                isLoggedIn={props.isLoggedIn}
+                route={props.route}
+                profileEmail={mockData.profileEmail}
+                onStateChange={props.handleStateChange}
+            />
             <Main>
-                <div className={classes.profile}>
-                    <Profile avatarSrc={mockData.profileAvatarSrc} name={mockData.profileName} occupation={mockData.profileOccupation}/>
-                </div>
+                { props.isLoggedIn &&
+                    <div className={classes.profile}>
+                        <Profile
+                            avatarSrc={mockData.profileAvatarSrc}
+                            name={mockData.profileName}
+                            occupation={mockData.profileOccupation}
+                        />
+                    </div>
+                }
                 <div className={classes.cardList}>
                     <CardList cards={mockData.cards} />
-                    {/* <CardList cards={cards} className={classes.cardList}/> */}
                 </div>
             </Main>
             <Footer/>
