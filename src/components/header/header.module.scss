@@ -32,7 +32,7 @@
     color: $white;
 
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
         opacity: 0.6;
     }

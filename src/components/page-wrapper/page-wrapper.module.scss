@@ -1,5 +1,19 @@
 @import '../../styles/shared';
 
+.pageWrapper {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: $white;
+    background-color: $black;
+}
+
 .container {
     padding: 38px 20px;
 }
@@ -29,7 +43,7 @@
 @media screen and (min-width: $desktop-width) {
 
     .container {
-        max-width: 880px;
+        width: 880px;
         margin-inline: auto;
         padding-inline: 0;
     }

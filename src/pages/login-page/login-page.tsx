@@ -1,17 +1,13 @@
 import { Footer } from "../../components/footer/footer";
 import { Form } from "../../components/form/form";
 import { Header } from "../../components/header/header";
-import { Main } from "../../components/main/main";
+import { PageWrapper } from "../../components/page-wrapper/page-wrapper";
 
 const LoginPage = (props) => {
     return (
         <div>
-            <Header isLoggedIn={props.isLoggedIn} route={props.route} profileEmail='' onStateChange={props.handleStateChange}/>
-            <Main>
-                LoginPage!!!!!!!!
-                {/* <Form/> */}
-            </Main>
-            <Footer/>
+            LoginPage!!!!!!!!
+            {/* <Form/> */}
         </div>
     );
 };

@@ -13,8 +13,6 @@ export const Profile = (props: TPorfileProps) => {
         <div className={classes.profile}>
             <img
                 src={props.avatarSrc}
-                // КАК установить?????????
-                srcSet="/img/avatar@2x.jpg 2x"
                 alt="avatar"
                 className={classes.avatar}
                 width="120"

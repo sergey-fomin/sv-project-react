@@ -1,7 +1,7 @@
 import { Footer } from "../../components/footer/footer";
 import { Form } from "../../components/form/form";
 import { Header } from "../../components/header/header";
-import { Main } from "../../components/main/main";
+import { PageWrapper } from "../../components/page-wrapper/page-wrapper";
 
 const RegistrationPage = (props) => {
     const handleClick = (evt) => {
@@ -10,12 +10,8 @@ const RegistrationPage = (props) => {
     }
     return (
         <div>
-            <Header isLoggedIn={props.isLoggedIn} route={props.route} profileEmail='' onStateChange={props.handleStateChange}/>
-            <Main>
-                {/* <Form/> */}
-                <a href="#" onClick={handleClick}>Уже зарегистрированы? Войти</a>
-            </Main>
-            <Footer/>
+            {/* <Form/> */}
+            <a href="#" onClick={handleClick}>Уже зарегистрированы? Войти</a>
         </div>
     );
 };

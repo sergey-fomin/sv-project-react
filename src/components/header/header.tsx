@@ -3,33 +3,27 @@ import classes from './header.module.scss';
 import mestoLogo from './../../assets/svg/mesto-logo.svg'
 import { useState } from 'react';
 
-type THeaderProps = {
+export type THeaderProps = {
     route: string;
     isLoggedIn: boolean;
     profileEmail: string;
-    onStateChange: ({}) => {};
+    onStateChange: (state: any) => void;
 }
 
 export const Header = (props: THeaderProps) => {
-    // const initialRoute = {route: props.route, isLoggedIn: props.isLoggedIn};
-    // const [state, setState] = useState(initialRoute);
-
     // Почему при типизации события вылезает ошибка??????
     const handleLinkToLogin = (evt): void => {
         evt.preventDefault();
-        // setState({route: 'login', isLoggedIn: false});
         props.onStateChange({route: 'login', isLoggedIn: false});
     }
 
     const handleLinkToRegistration = (evt): void => {
         evt.preventDefault();
-        // setState({route: 'registration', isLoggedIn: false});
         props.onStateChange({route: 'registration', isLoggedIn: false});
     }
 
     const handleLinkToLogout = (evt): void => {
         evt.preventDefault();
-        // setState({route: 'main-page', isLoggedIn: false});
         props.onStateChange({route: 'main-page', isLoggedIn: false});
     }
 
