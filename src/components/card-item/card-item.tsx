@@ -2,12 +2,12 @@ import classes from './card-item.module.scss';
 import defaultImg from './../../assets/img/default-card-image.jpg';
 import deleteIcon from './../../assets/svg/delete-icon.svg';
 
-export type TCardItemProps = {
+export type TCardItem = {
     imageSrc?: string;
     title: string;
 }
 
-export const CardItem = (props: TCardItemProps) => {
+export const CardItem = (props: TCardItem) => {
     return (
         <div className={classes.cardItem}>
             <img

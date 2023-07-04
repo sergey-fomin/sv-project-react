@@ -14,7 +14,15 @@
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
+      "module": "CommonJS",
+      "plugins": [
+        {
+          "name": "typscript-plugin-css-modules",
+          "options": {
+            "customMatcher": "\\.module\\.s?css$",
+          }
+        }
+      ]
     }
   }
 }

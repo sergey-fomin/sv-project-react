@@ -2,11 +2,20 @@ import { CardList } from "../../components/card-list/card-list";
 import { Profile } from "../../components/profile/profile";
 import classes from './main-page.module.scss';
 
-import { mockData } from "../../helpers/mock-data/mock-data";
+import { loadCards, mockData } from "../../helpers/mock-data/mock-data";
+import { useEffect, useState } from "react";
+import { TCardItem } from "../../components/card-item/card-item";
 
 const MainPage = (props) => {
+    const [cards, setCards] = useState<TCardItem[]>([]);
+
+    useEffect(
+        function() {
+            loadCards().then(setCards);
+        }, []
+    );
     return (
-        <div>
+        <>
             { props.isLoggedIn &&
                 <div className={classes.profile}>
                     <Profile
@@ -17,9 +26,9 @@ const MainPage = (props) => {
                 </div>
             }
             <div className={classes.cardList}>
-                <CardList cards={mockData.cards} />
+                <CardList cards={cards} />
             </div>
-        </div>
+        </>
     );
 };
 

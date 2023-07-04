@@ -10,7 +10,7 @@ export const PageWrapper = (props: PropsWithChildren<THeaderProps>) => {
                 isLoggedIn={props.isLoggedIn}
                 route={props.route}
                 profileEmail={props.profileEmail}
-                onStateChange={props.onStateChange}
+                handleStateChange={props.handleStateChange}
             />
                 <main className={classes.container}>
                     {props.children}
