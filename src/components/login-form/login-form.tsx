@@ -1,5 +1,5 @@
-import classes from './../form.module.scss';
-import { classNames } from '../../../helpers/class-names/class-names';
+import classes from './../form/form.module.scss'; // Потом поправить!!!!
+import { classNames } from '@helpers';
 import { useCallback, useEffect, useState } from 'react';
 
 // В отдельный файл, положить рядом с формой login-form.validators.ts

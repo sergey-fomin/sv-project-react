@@ -1,17 +1,15 @@
-import { CardList } from "../../components/card-list/card-list";
-import { Profile } from "../../components/profile/profile";
 import classes from './main-page.module.scss';
-
-import { loadCards, mockData } from "../../helpers/mock-data/mock-data";
 import { useEffect, useState } from "react";
-import { TCardItem } from "../../components/card-item/card-item";
+import { TCardItem } from "@types";
+import { CardList, Profile } from '@components';
+import { loadMockCards, mockData } from '@mocks';
 
 const MainPage = (props) => {
     const [cards, setCards] = useState<TCardItem[]>([]);
 
     useEffect(
         function() {
-            loadCards().then(setCards);
+            loadMockCards().then(setCards);
         }, []
     );
     return (

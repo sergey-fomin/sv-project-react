@@ -1,6 +1,6 @@
 import classes from './profile.module.scss';
-import plusIcon from './../../assets/svg/plus-icon.svg';
-import editIcon from './../../assets/svg/edit-icon.svg';
+import plusIcon from '@assets/svg/plus-icon.svg';
+import editIcon from '@assets/svg/edit-icon.svg';
 
 type TPorfileProps = {
     avatarSrc: string;

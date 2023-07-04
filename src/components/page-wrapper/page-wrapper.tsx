@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Footer } from '../footer/footer';
-import { Header, THeaderProps } from '../header/header';
+import { Footer, Header, THeaderProps } from '@components';
 import classes from './page-wrapper.module.scss';
 
 export const PageWrapper = (props: PropsWithChildren<THeaderProps>) => {

@@ -10,7 +10,15 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@assets": ["./src/assets"],
+      "@components": ["src/components/index.ts"],
+      "@helpers": ["./src/helpers/index.ts"],
+      "@mocks": ["./src/mock-data/index.ts"],
+      "@pages": ["./src/pages/index.ts"],
+      "@types": ["./src/types/index.ts"],
+    }
   },
   "ts-node": {
     "compilerOptions": {

@@ -1,11 +1,8 @@
 import classes from './card-item.module.scss';
-import defaultImg from './../../assets/img/default-card-image.jpg';
-import deleteIcon from './../../assets/svg/delete-icon.svg';
+import defaultImg from '@assets/img/default-card-image.jpg';
+import deleteIcon from '@assets/svg/delete-icon.svg';
+import { TCardItem } from '@types';
 
-export type TCardItem = {
-    imageSrc?: string;
-    title: string;
-}
 
 export const CardItem = (props: TCardItem) => {
     return (

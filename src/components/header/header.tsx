@@ -1,6 +1,5 @@
-import { classNames } from '../../helpers/class-names/class-names';
 import classes from './header.module.scss';
-import mestoLogo from './../../assets/svg/mesto-logo.svg'
+import mestoLogo from '@assets/svg/mesto-logo.svg'
 import { useContext, useState } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../app';

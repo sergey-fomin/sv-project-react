@@ -1,4 +1,5 @@
-import { CardItem, TCardItem } from "../card-item/card-item";
+import { TCardItem } from '@types';
+import { CardItem } from '@components';
 import classes from './card-list.module.scss';
 
 type TCardListProps = {
