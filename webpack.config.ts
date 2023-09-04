@@ -11,7 +11,7 @@ export default (env: IBuildEnv) => {
     }
     const mode: TBuildMode = env.mode || 'development';
     const isDev: boolean = mode === 'development';
-    const PORT: number = env.port || 3000;
+    const PORT: number = env.port || 4200;
     const config: webpack.Configuration = buildWebpackConfig({
         paths,
         mode,

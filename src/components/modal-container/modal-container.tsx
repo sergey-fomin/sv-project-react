@@ -5,7 +5,6 @@ export const ModalContainer = (props) => {
         <div className={classes['modal-container']}>
             <div className={classes['modal-container__container']}>
                 <div
-                    id="modal-container-content-wrapper"
                     className={classes['modal-container__content-wrapper']}
                 >
                     {props.children}

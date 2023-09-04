@@ -1,68 +1,43 @@
 import classes from './header.module.scss';
 import mestoLogo from '@assets/svg/mesto-logo.svg'
-import { useContext, useState } from 'react';
-import { Link, Route, Routes, useLocation } from 'react-router-dom';
-import { AuthContext } from '../../app';
+import { AuthContext, ProfileContext } from '@context';
+import { useContext } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 
 export type THeaderProps = {
-    route: string;
-    isLoggedIn: boolean;
-    profileEmail: string;
-    handleStateChange: (state: any) => void;
+    handleAuthStateChange: (state: {isLoggedIn: boolean}) => void;
 }
 
 export const Header = (props: THeaderProps) => {
-    const {pathname} = useLocation();
-    const {isLoggedIn} = useContext(AuthContext);
-    const currentRoute = pathname.split('/', 2).filter(string => string !== '').toString();
+    const { isLoggedIn } = useContext(AuthContext);
+    const profileData = useContext(ProfileContext);
 
-    console.log('isLoggedIn', isLoggedIn);
-
-    // Почему при типизации события вылезает ошибка??????
-    const handleLinkToLogin = (evt): void => {
-        evt.preventDefault();
-        props.handleStateChange({route: 'login', isLoggedIn: false});
+    const handleLinkToLogout = (): void => {
+        props.handleAuthStateChange({isLoggedIn: false});
     }
 
-    const handleLinkToRegistration = (evt): void => {
-        evt.preventDefault();
-        props.handleStateChange({route: 'registration', isLoggedIn: false});
-    }
+    const loginHeaderContent = <Link to={'/registration'} className={classes.link}>Регистрация</Link>;
+    const registrationHeaderContent = <Link to={'/login'} className={classes.link}>Войти</Link>;
 
-    const handleLinkToLogout = (evt): void => {
-        evt.preventDefault();
-        props.handleStateChange({route: '/', isLoggedIn: false});
-    }
-
-    const getLoginInfo = (route: string, isLoggedIn: boolean, profileEmail = '') => {
-        switch(route) {
-            case 'registration':
-                return (
-                    <Link to={'/login'} className={classes.link}>Войти</Link>
-                );
-            case 'login':
-                return (
-                    <Link to={'/registration'} className={classes.link}>Регистрация</Link>
-                );
-            default:
-                if (isLoggedIn) {
-                    return (
-                        <>
-                            <p className={classes.email}>{profileEmail}</p>
-                            <Link to={'/'} onClick={handleLinkToLogout} className={classes.link}>Выйти</Link>
-                        </>
-                    );
-                }
-
-                return (
-                    <>
-                        <Link to={'/login'} className={classes.link}>Войти</Link>
-                        <span>/</span>
-                        <Link to={'/registration'} className={classes.link}>Регистрация</Link>
-                    </>
-                );
+    const getMainHeaderContent = () => {
+        if (isLoggedIn) {
+            return (
+                <>
+                    <p className={classes.email}>{profileData?.email}</p>
+                    <button onClick={handleLinkToLogout} className={classes.link}>Выйти</button>
+                </>
+            );
         }
-    }
+
+        return (
+            <>
+                <Link to={'/login'} className={classes.link}>Войти</Link>
+                <span>/</span>
+                <Link to={'/registration'} className={classes.link}>Регистрация</Link>
+            </>
+        );
+
+    };
 
     return (
         <header className={classes.header}>
@@ -70,23 +45,10 @@ export const Header = (props: THeaderProps) => {
                 <img className={classes.logo} src={mestoLogo}/>
                 <div className={classes.loginInfo}>
                     <Routes>
-                        {/* сам контекст в функцию не передавать! */}
-                        {/* <Route path='/' element={<>getMainHeader(context.isLoggedIn)</>}></Route> */}
-                        <Route path='/' element={<>main</>}></Route>
-                        <Route path='/login' element={<>login</>}></Route>
-                        <Route path='/registration' element={<>registration</>}></Route>
+                        <Route path='/' element={getMainHeaderContent()}></Route>
+                        <Route path='/login' element={loginHeaderContent}></Route>
+                        <Route path='/registration' element={registrationHeaderContent}></Route>
                     </Routes>
-                    {/* {
-                        (currentRoute !== 'login' || isLoggedIn === false) &&
-                        <Link to={'/login'} className={classes.link}>Войти</Link>
-                    } */}
-                    {
-                        getLoginInfo(
-                            currentRoute,
-                            isLoggedIn,
-                            props.profileEmail
-                        )
-                    }
                 </div>
             </div>
         </header>

@@ -7,3 +7,5 @@ export * from './login-form/login-form';
 export * from './modal-container/modal-container';
 export * from './page-wrapper/page-wrapper';
 export * from './profile/profile';
+export * from './input/input';
+export * from './registration-form/registration-form';

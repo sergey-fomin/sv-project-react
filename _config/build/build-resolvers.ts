@@ -11,6 +11,7 @@ export function buildResolvers(): webpack.ResolveOptions {
             "@mocks": path.resolve(__dirname, '../../src/mock-data/index.ts'),
             "@pages": path.resolve(__dirname, '../../src/pages/index.ts'),
             "@types": path.resolve(__dirname, '../../src/types/index.ts'),
+            "@context": path.resolve(__dirname, '../../src/context.ts'),
         }
     }
 }

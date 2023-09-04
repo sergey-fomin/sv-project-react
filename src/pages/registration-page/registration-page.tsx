@@ -1,13 +1,16 @@
-const RegistrationPage = (props) => {
-    const handleClick = (evt) => {
-        evt.preventDefault();
-        props.handleStateChange({route: 'main-page', isLoggedIn: true})
-    }
+import { RegistrationForm } from "@components";
+import { Link } from "react-router-dom";
+
+type TRegistrationFormProps = {
+    handleAuthStateChange: (state: {isLoggedIn: boolean}) => void;
+}
+
+const RegistrationPage = (props: TRegistrationFormProps) => {
     return (
-        <div>
-            {/* <Form/> */}
-            <a href="#" onClick={handleClick}>Уже зарегистрированы? Войти</a>
-        </div>
+        <>
+            <RegistrationForm handleAuthStateChange={props.handleAuthStateChange} />
+            <Link to={'/login'}>Уже зарегистрированы? Войти</Link>
+        </>
     );
 };
 

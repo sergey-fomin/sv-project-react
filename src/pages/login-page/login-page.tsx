@@ -1,12 +1,12 @@
 import { LoginForm } from "@components";
 
-const LoginPage = (props) => {
+type TLoginPageProps = {
+    handleAuthStateChange: (state: {isLoggedIn: boolean}) => void;
+}
+
+const LoginPage = (props: TLoginPageProps) => {
     return (
-        // <div>
-        //     LoginPage!!!!!!!!
-        //     {/* <Form/> */}
-        // </div>
-        <LoginForm/>
+        <LoginForm handleAuthStateChange={props.handleAuthStateChange}/>
     );
 };
 

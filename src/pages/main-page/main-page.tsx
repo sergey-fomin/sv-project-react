@@ -1,30 +1,28 @@
 import classes from './main-page.module.scss';
-import { useEffect, useState } from "react";
-import { TCardItem } from "@types";
+import { useContext } from "react";
 import { CardList, Profile } from '@components';
-import { loadMockCards, mockData } from '@mocks';
+import { AuthContext, CardsContext, ProfileContext } from '@context';
 
 const MainPage = (props) => {
-    const [cards, setCards] = useState<TCardItem[]>([]);
+    const cards = useContext(CardsContext);
+    const profileData = useContext(ProfileContext);
+    const { isLoggedIn } = useContext(AuthContext);
+    // const updateCards = props.updateCards();
 
-    useEffect(
-        function() {
-            loadMockCards().then(setCards);
-        }, []
-    );
     return (
         <>
-            { props.isLoggedIn &&
+            { isLoggedIn && profileData &&
                 <div className={classes.profile}>
                     <Profile
-                        avatarSrc={mockData.profileAvatarSrc}
-                        name={mockData.profileName}
-                        occupation={mockData.profileOccupation}
+                        avatarSrc={profileData.avatar}
+                        name={profileData.name}
+                        occupation={profileData.description}
                     />
                 </div>
             }
             <div className={classes.cardList}>
-                <CardList cards={cards} />
+                <CardList cards={cards}/>
+                {/* <CardList cards={cards} updateCards={updateCards}/> */}
             </div>
         </>
     );

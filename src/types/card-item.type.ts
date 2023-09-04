@@ -1,4 +1,9 @@
+type TUserId = string;
+
 export type TCardItem = {
-    imageSrc?: string;
+    url?: string;
     title: string;
+    id: string;
+    userId: TUserId;
+    likes: TUserId[];
 }

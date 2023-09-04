@@ -1,153 +1,98 @@
 import classes from './../form/form.module.scss'; // Потом поправить!!!!
-import { classNames } from '@helpers';
-import { useCallback, useEffect, useState } from 'react';
+import { api, classNames } from '@helpers';
+import { Input } from '@components';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { LOGIN_VALIDATION_RULES } from './login-validation-rules';
+import { useNavigate } from 'react-router-dom';
 
-// В отдельный файл, положить рядом с формой login-form.validators.ts
-const LOGIN_VALIDATION_RULES = {
-    loginEmail: {
-        required: (value) => {
-            if (value !== '') {
-                return null;
-            }
-            return 'Поле "Email" обязательно для заполнения';
-        },
-        custom: (value) => {
-            const regExp = /^\S+@\S+\.\S+$/;
-            if (regExp.test(value)) {
-                return null;
-            }
-            return 'Введите email в формате "name@mail.com"';
-        }
-    },
-    loginPassword: {
-        minLength: (value) => {
-            const minLengthValue = 8;
-
-            if (value.length > minLengthValue) {
-                return null;
-            }
-            return `Минимальная длина поля - ${minLengthValue} символов`
-        },
-        required: (value) => {
-            if (value !== '') {
-                return null;
-            }
-            return 'Поле "Пароль" обязательно для заполнения';
-        }
-    }
+type TLoginForm = {
+    email: string;
+    password: string;
 }
 
-export const LoginForm = (props) => {
-    const [formValues, setFormValues] = useState({
-        loginEmail: '',
-        loginPassword: ''
-    });
+type TLoginFormProps = {
+    handleAuthStateChange: (state: {isLoggedIn: boolean}) => void;
+}
 
-    const [formValidity, setFormValidity] = useState({
-        loginEmailIsValid: false,
-        loginPasswordIsValid: false
-    });
+export const LoginForm = (props: TLoginFormProps) => {
+    const handleAuthStateChange = (state: {isLoggedIn: boolean}) => {
+        props.handleAuthStateChange(state)
+    }
+    // !!!!!!!!!!!!!!!!!!
+    // console.log(classes);
+    const navigate = useNavigate();
 
-    const [formErrors, setFormErrors] = useState({
-        loginEmailErrors: {},
-        loginPasswordErrors: {}
-    });
-
-    const {loginEmail, loginPassword} = formValues;
-    const {loginEmailIsValid, loginPasswordIsValid} = formValidity;
-    const {loginEmailErrors, loginPasswordErrors} = formErrors;
-    let isSubmitDisabled = !loginEmailIsValid || !loginPasswordIsValid;
-    // let loginEmailError: string = '';
-    // let loginPasswordError: string = '';
-
-
-    // Почему ошибка при типизации эвента? React.ChangeEvent<HTMLInputElement> Эвент реакта, смотреть в ончейндже элемента
-    const handleInputChange = useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = evt.target;
-        setFormValues(prevState => ({...prevState, [name]: value}));
-    }, [setFormValues]);
-
-    useEffect(
-        function validateInputs() {
-            // const {loginEmail, loginPassword} = formValues;
-            // console.log(formValues);
-            // console.log(loginEmailIsValid);
-            const isLoginEmailValid = Object.keys(LOGIN_VALIDATION_RULES.loginEmail).map(
-                (errorKey) => {
-                    const errorResult = LOGIN_VALIDATION_RULES.loginEmail[errorKey](loginEmail);
-                    setFormErrors(prevState => ({...prevState, loginEmailErrors: errorResult}));
-                    // if (typeof errorResult === 'string') {
-                    //     setFormErrors = errorResult;
-                    // }
-
-                    return {[errorKey]: errorResult};
-                });
-
-            const isLoginPasswordValid = Object.keys(LOGIN_VALIDATION_RULES.loginPassword).map(
-                (errorKey) => {
-                    const errorResult = LOGIN_VALIDATION_RULES.loginPassword[errorKey](loginPassword);
-                    setFormErrors(prevState => ({...prevState, loginPasswordErrors: errorResult}));
-                    // if (typeof errorResult === 'string') {
-                    //     loginPasswordErrors = errorResult;
-                    // }
-
-                    return {[errorKey]: errorResult};
-                });
-
-                console.log(isLoginEmailValid, isLoginPasswordValid)
-                console.log(formErrors, )
-
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors,
+            isValid,
+            isDirty
         },
-        [formValues, setFormValidity]
-    );
+    } = useForm<TLoginForm>({
+        mode: 'all'
+    });
 
-    console.log(classes);
+    console.log('ERRORS', errors);
+
+    const isFormValid = isDirty && isValid;
+
+    function onSubmit(data): SubmitHandler<TLoginForm> {
+        console.log('submitted data:', data);
+        api.login(data)
+            .then((data) => {
+                console.log(data)
+                if (data.success) {
+                    api.saveToken(data.token);
+                    handleAuthStateChange({ isLoggedIn: true });
+                    navigate('/');
+                } else {
+                    throw new Error(`User ${ data.email } not found`);
+                }
+            })
+
+        return data;
+    };
+
+    function onError(data): SubmitErrorHandler<TLoginForm> {
+        console.log('ERROR', data);
+
+        return data;
+    };
+
+    const { ref: emailRef, ...emailProps } = register('email', LOGIN_VALIDATION_RULES.email);
+    const { ref: passwordRef, ...passwordProps } = register('password', LOGIN_VALIDATION_RULES.password);
 
     return (
-        <form className={classNames(
-            classes.form,
-            {'isInversion': true},
-            [classes.form['isInversion']]
-            )}
+        <form
+            className={ classNames(
+                classes.form,
+                { 'isInversion': true },
+                [classes.form['isInversion']]
+            ) }
+            onSubmit={ handleSubmit(onSubmit, onError) }
         >
-            <fieldset className={classes.fieldset}>
-                <legend className={classes.title}>Вход</legend>
-                <div className={classes.inputWrapper}>
-                    <input
-                        className={classNames(
-                            classes.input,
-                            {'isInvalid': !loginEmailIsValid},
-                            []
-                            )}
-                        type="email"
-                        name="loginEmail"
-                        id="login-email"
-                        placeholder="Email"
-                        value={loginEmail}
-                        onChange={handleInputChange}
-                    />
-                    <div className={classes.inputError}>{JSON.stringify(loginEmailErrors)}</div>
-                </div>
-                <div className={classes.inputWrapper}>
-                    <input
-                        className={classNames(
-                            classes.input,
-                            {'isInvalid': !loginPasswordIsValid},
-                            []
-                            )}
-                        type="password"
-                        name="loginPassword"
-                        id="login-password"
-                        placeholder="Пароль"
-                        value={loginPassword}
-                        onChange={handleInputChange}
-                    />
-                    <div className={classes.inputError}>{JSON.stringify(loginPasswordErrors)}</div>
-                </div>
+            <fieldset className={ classes.fieldset }>
+                <legend className={ classes.title }>Вход</legend>
+                <Input
+                    type="email"
+                    placeholder="Email"
+                    myRef={emailRef}
+                    error={ errors.email?.message }
+                    { ...emailProps }
+                />
+                <Input
+                    type="password"
+                    placeholder="Пароль"
+                    myRef={passwordRef}
+                    error={ errors.password?.message }
+                    {...passwordProps}
+                />
                 <button
-                    className={classes.submitBtn}
+                    className={ classes.submitBtn }
                     type="submit"
-                    disabled={isSubmitDisabled}
+                    disabled={ !isFormValid }
                 >
                     Войти
                 </button>

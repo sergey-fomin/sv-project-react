@@ -1,6 +1,8 @@
 export type TUserData = {
-    profileAvatarSrc: string,
-    profileName: string,
-    profileOccupation: string,
-    profileEmail: string
+    name: string,
+    description: string,
+    avatar: string,
+    email: string,
+    password: string,
+    id: string,
 }

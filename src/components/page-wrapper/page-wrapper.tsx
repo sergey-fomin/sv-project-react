@@ -1,16 +1,15 @@
 import { PropsWithChildren } from 'react';
-import { Footer, Header, THeaderProps } from '@components';
+import { Footer, Header } from '@components';
 import classes from './page-wrapper.module.scss';
 
-export const PageWrapper = (props: PropsWithChildren<THeaderProps>) => {
+type TPageWrapperProps = {
+    handleAuthStateChange: (state: {isLoggedIn: boolean}) => void;
+}
+
+export const PageWrapper = (props: PropsWithChildren<TPageWrapperProps>) => {
     return (
         <div className={classes.pageWrapper}>
-            <Header
-                isLoggedIn={props.isLoggedIn}
-                route={props.route}
-                profileEmail={props.profileEmail}
-                handleStateChange={props.handleStateChange}
-            />
+            <Header handleAuthStateChange={props.handleAuthStateChange} />
                 <main className={classes.container}>
                     {props.children}
                 </main>

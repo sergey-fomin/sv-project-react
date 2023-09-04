@@ -5,35 +5,37 @@ import avatar from './img/avatar.jpg';
 import { TCardItem, TUserData } from '@types';
 
 
-export function loadMockCards(): Promise<Array<TCardItem>> {
+export function loadMockCards(): Promise<Array<Partial<TCardItem>>> {
     return Promise.resolve(mockData.cards);
 }
 
 export function loadMockUserData(): Promise<TUserData> { // разбить mockData на 2 части
     return Promise.resolve({
-        profileAvatarSrc: mockData.profileAvatarSrc,
-        profileName: mockData.profileName,
-        profileEmail: mockData.profileEmail,
-        profileOccupation: mockData.profileOccupation
+        avatar: mockData.profileAvatarSrc,
+        description: mockData.profileOccupation,
+        email: mockData.profileEmail,
+        password: '1231',
+        id: '1231',
+        name: mockData.profileName
     });
 }
 
 export const mockData = {
     cards: [
         {
-            imageSrc: elbrusImgSrc,
+            url: elbrusImgSrc,
             title: 'elbrus'
         },
         {
-            imageSrc: karachaevskImgSrc,
+            url: karachaevskImgSrc,
             title: 'karachaevsk'
         },
         {
-            imageSrc: '',
+            url: '',
             title: 'default'
         },
         {
-            imageSrc: dombaiImgSrc,
+            url: dombaiImgSrc,
             title: 'dombai'
         },
     ],
